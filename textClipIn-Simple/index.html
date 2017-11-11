@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			.txt-animate>span>span {
+				display: inline-flex;
+				transform: translateY(100%);
+				transition:1000ms cubic-bezier(.23, 1, .32, 1); all;
+			}
+
+			.txt-animate>span {
+				display:inline-flex;
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="txt-animate scroll-animate" id="basic-waypoint">THIS IS AN EXAMPLE</h1>
+		
+		<!--jquery-->
+		<script src="https://code.jquery.com/jquery-2.0.0.min.js"></script>
+		
+		<!--LetteringJS-->
+		<script src="https://cdn.jsdelivr.net/lettering/0.7.0/jquery.lettering.min.js"></script>
+		
+		<!--waypoints-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+		
+		<script> 
+			$( document ).ready(function() {
+				
+				//Using lettering.js to split words and letters into spans
+				$(".txt-animate").lettering('words').children('span').lettering();
+				
+				//setting word spaces based on text character width
+				var letter = $('.txt-animate>span>span');
+				$(".txt-animate>span").css({ marginRight: letter.width() / 3 });
+				
+				//text animation on load
+				$.each($('.txt-animate>span>span').not('.txt-animate.scroll-animate>span>span'), function(i, el){
+					setTimeout(function(){
+					   $(el).css({
+						'transform':"translateY(0)",
+						 'easing':"easeout"
+					   }, 600);
+					},50 + ( i * 50 ));
+				});
+				
+			});
+		</script>
+		
+		<script>
+			//text animation on scroll
+			var waypoint = new Waypoint({
+				element: document.getElementsByClassName('scroll-animate'),
+				offset: '85%',
+				continuous: false,
+				handler: function() {
+					$.each($('.scroll-animate>span>span'), function(i, el){
+						setTimeout(function(){
+						   $(el).css({
+							'transform':"translateY(0)"
+						   }, 600);
+						},75 + ( i * 75 ));
+
+					});
+				}
+			})
+		</script>
+	</body>
+</html>
