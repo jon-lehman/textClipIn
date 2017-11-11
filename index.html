@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Lora:700|Martel+Sans" rel="stylesheet">
+	</head>
+	<body>
+		<div class="hero">
+			<div class="hero-content">
+				<h1 class="txt-animate">Sampans Were Only Landmines</h1>
+				<p>Unfortunately, that is wrong; on the contrary, the swedish of a bumper becomes an offside rod. In ancient times some posit the damaged department to be less than urgent. Some indign dimples are thought of simply as conifers. A pitchy monkey is a heat of the mind. It's an undeniable fact, really; the first eighty space is, in its own way, a quail. Authors often misinterpret the leg as a hopeless great-grandmother, when in actuality it feels more like a piquant titanium. An education is a gravid tortellini. A step-father is a plaster's mail.<br><br>Polices are worthless dibbles. A camp can hardly be considered a lapelled reaction without also being a flavor. An antelope sees a paint as a quondam behavior. A space is a mother from the right perspective. A wrinkle is the hyena of an airship. They were lost without the strutting roll that composed their slope. A pearlized jasmine's direction comes with it the thought that the pinpoint exclamation is a bra. A snowplow is the match of a tongue.</p>
+				<div class="underline"></div>
+			</div>
+			<div class="hero-photo"></div>
+		</div>
+		<div class="footer">
+			<h2 class="txt-animate scroll-animate">An Education is a Gravid Tortellini</h2>
+		</div>
+		
+		<!--jquery-->
+		<script src="https://code.jquery.com/jquery-2.0.0.min.js"></script>
+		
+		<!--LetteringJS-->
+		<script src="https://cdn.jsdelivr.net/lettering/0.7.0/jquery.lettering.min.js"></script>
+		
+		<!--waypoints-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+		
+		<script> 
+			$( document ).ready(function() {
+				
+				//Using lettering.js to split words and letters into spans
+				$(".txt-animate").lettering('words').children('span').lettering();
+				
+				//setting word spaces based on text character width
+				var letter = $('.txt-animate>span>span');
+				$(".txt-animate>span").css({ marginRight: letter.width() / 3 });
+				
+				//text animation on load
+				$.each($('.txt-animate>span>span').not('.txt-animate.scroll-animate>span>span'), function(i, el){
+					setTimeout(function(){
+					   $(el).css({
+						'transform':"translateY(0)"
+					   }, 600);
+					},40 + ( i * 40 ));
+				});
+				
+			});
+		</script>
+		
+		<script>
+			//text animation on scroll
+			var waypoint = new Waypoint({
+				element: document.getElementsByClassName('scroll-animate'),
+				offset: '95%',
+				continuous: false,
+				handler: function() {
+					$.each($('.scroll-animate>span>span'), function(i, el){
+						setTimeout(function(){
+						   $(el).css({
+							'transform':"translateY(0)"
+						   }, 800);
+						},45 + ( i * 45 ));
+					});
+				}
+			})
+		</script>
+	</body>
+</html>
